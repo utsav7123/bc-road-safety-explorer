@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Methodology | BC Road Safety Explorer</title>
+  <meta name="description" content="Data sources, KPI definitions, validation rules, trend analysis, geospatial limitations, and forecasting methodology for BC Road Safety Explorer.">
+  <link rel="canonical" href="https://utsav7123.github.io/bc-road-safety-explorer/methodology/">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Dashboard","item":"https://utsav7123.github.io/bc-road-safety-explorer/"},{"@type":"ListItem","position":2,"name":"Methodology","item":"https://utsav7123.github.io/bc-road-safety-explorer/methodology/"}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="header"><a class="brand" href="../">BC Road Safety Explorer</a><nav><a href="../">Dashboard</a><a href="https://github.com/utsav7123/bc-road-safety-explorer">Source</a></nav></div></header>
+<main>
+  <article style="max-width:850px">
+    <p class="eyebrow">Methodology</p>
+    <h1>Make the metric traceable from source to chart.</h1>
+    <p class="lede">This project uses public aggregate road safety tables from RoadSafetyBC. The pipeline downloads the source CSV files, reshapes them into a consistent year-category-value format, validates numeric values, and generates a compact JSON dataset for the dashboard.</p>
+
+    <section class="section"><h2>Data cleaning</h2><p class="section-copy">The loader supports both wide government tables with one column per year and long tables with an explicit year field. Commas and simple suppression markers are removed before numeric conversion. Empty rows, invalid years, and non-numeric measures are excluded.</p></section>
+
+    <section class="section"><h2>KPI design</h2><p class="section-copy">Each KPI keeps a definition, source, refresh cadence, caveat, latest year, current value, and five-year change. This mirrors the idea that a performance measure should describe not only the numerator but how the number is meant to be interpreted.</p></section>
+
+    <section class="section"><h2>Trend analysis</h2><p class="section-copy">Annual series are sorted by year and summarized without smoothing so the original published values remain visible. The playable timeline highlights one observation at a time rather than replacing the source series.</p></section>
+
+    <section class="section"><h2>Regional map</h2><p class="section-copy">The map is a geospatial visualization of aggregate police traffic regions. Region coordinates are approximate visual anchors. They are not crash coordinates and should not be used for hotspot or intersection-level conclusions.</p></section>
+
+    <section class="section"><h2>Forecasting</h2><p class="section-copy">A linear regression is fit to the most recent ten annual fatality totals and projected three years forward. This is intentionally simple so the model can be explained. It does not estimate causal effects or replace an official forecast.</p></section>
+
+    <section class="section"><h2>Known limitations</h2><p class="section-copy">Police reporting practices and coverage have changed over time. Public aggregate tables also limit what can be learned about exposure, intersection-level risk, individual crash circumstances, and causal factors. The dashboard therefore focuses on descriptive monitoring and transparent baseline analysis.</p></section>
+  </article>
+</main>
+<footer><div class="footer-inner"><span>Definitions and caveats belong next to the analysis.</span><span><a href="../">Back to dashboard</a></span></div></footer>
+</body>
+</html>
