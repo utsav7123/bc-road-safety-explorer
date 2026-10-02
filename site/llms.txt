@@ -1,0 +1,14 @@
+# BC Road Safety Explorer
+
+Interactive road safety analytics portfolio project by Utsav Patel.
+
+## Pages
+- Dashboard: https://utsav7123.github.io/bc-road-safety-explorer/
+- Methodology: https://utsav7123.github.io/bc-road-safety-explorer/methodology/
+- Source code: https://github.com/utsav7123/bc-road-safety-explorer
+
+## Purpose
+The project uses public aggregate RoadSafetyBC datasets to demonstrate KPI development, data cleaning, trend analysis, vulnerable road-user reporting, regional geospatial visualization, and transparent baseline forecasting.
+
+## Important limitation
+Map positions are regional visualization anchors, not individual crash locations. Forecast values are portfolio baseline projections and are not official ICBC or RoadSafetyBC forecasts.
