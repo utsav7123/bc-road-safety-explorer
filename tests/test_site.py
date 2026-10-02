@@ -70,8 +70,9 @@ def test_structured_data_uses_truthful_types():
 def test_discovery_and_social_assets_exist():
     for name in ("robots.txt", "sitemap.xml", "llms.txt", "site.webmanifest"):
         assert (SITE / name).exists()
-    for name in ("favicon.svg", "social-card.svg", "road-safety-hero.svg"):
+    for name in ("favicon.svg", "social-card.svg"):
         assert (SITE / "assets" / name).exists()
+    assert not (SITE / "assets" / "road-safety-hero.svg").exists()
 
 
 def test_sitemap_lists_all_public_clean_urls():
@@ -116,12 +117,16 @@ def test_production_javascript_is_small_and_clean():
     assert "console.error" not in js
     assert "console.log" not in js
     assert "TODO" not in js
-    assert "requestAnimationFrame" in js
-    assert "setInterval" in js
-    assert "IntersectionObserver" in js
+    assert "requestAnimationFrame" not in js
+    assert "setInterval" not in js
+    assert "IntersectionObserver" not in js
+    assert "forecast-overlay" not in js
 
 
-def test_motion_respects_reduced_motion():
+def test_site_avoids_decorative_motion_and_overlay_charts():
     css = read(SITE / "assets" / "styles.css")
-    assert "@keyframes" in css
-    assert "prefers-reduced-motion" in css
+    index = read(SITE / "index.html")
+    assert "@keyframes" not in css
+    assert "road-safety-hero.svg" not in index
+    assert "play-years" not in index
+    assert "forecast-overlay" not in index
