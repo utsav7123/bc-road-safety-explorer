@@ -16,18 +16,19 @@ function lineChart(canvas, labels, datasets) {
         legend: {
           labels: {
             color: "#343434",
-            boxWidth: 20,
-            usePointStyle: false
+            boxWidth: 18,
+            usePointStyle: false,
+            font: { size: 13, family: "Segoe UI, system-ui, sans-serif", weight: "600" }
           }
         }
       },
       scales: {
         x: {
-          ticks: { color: "#666666" },
+          ticks: { color: "#666666", font: { size: 12, family: "Segoe UI, system-ui, sans-serif" } },
           grid: { color: "rgba(0,0,0,.06)" }
         },
         y: {
-          ticks: { color: "#666666" },
+          ticks: { color: "#666666", font: { size: 12, family: "Segoe UI, system-ui, sans-serif" } },
           grid: { color: "rgba(0,0,0,.08)" }
         }
       }
@@ -135,11 +136,11 @@ async function init() {
         plugins: { legend: { display: false } },
         scales: {
           x: {
-            ticks: { color: "#666666" },
+            ticks: { color: "#666666", font: { size: 12, family: "Segoe UI, system-ui, sans-serif" } },
             grid: { display: false }
           },
           y: {
-            ticks: { color: "#666666" },
+            ticks: { color: "#666666", font: { size: 12, family: "Segoe UI, system-ui, sans-serif" } },
             grid: { color: "rgba(0,0,0,.08)" }
           }
         }
