@@ -6,35 +6,90 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
-PAGES = [SITE / "index.html", SITE / "methodology" / "index.html", SITE / "404.html"]
+PUBLIC_PAGES = [
+    SITE / "index.html",
+    SITE / "methodology" / "index.html",
+    SITE / "data-notes" / "index.html",
+    SITE / "about" / "index.html",
+]
+PAGES = [*PUBLIC_PAGES, SITE / "404.html"]
 
 
-def test_pages_have_one_h1_and_no_em_dash():
+def read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def test_pages_have_unique_titles_descriptions_and_one_h1():
+    titles = []
+    descriptions = []
     for page in PAGES:
-        text = page.read_text(encoding="utf-8")
-        assert len(re.findall(r"<h1(?:\s|>)", text, re.I)) == 1
-        assert "—" not in text
+        text = read(page)
+        title = re.search(r"<title>(.+?)</title>", text, re.I | re.S)
+        description = re.search(r'<meta name="description" content="(.+?)">', text, re.I | re.S)
+        assert title, page
+        assert description, page
+        assert len(re.findall(r"<h1(?:\s|>)", text, re.I)) == 1, page
         assert "TODO" not in text
+        assert "lorem ipsum" not in text.lower()
+        assert "—" not in text
+        titles.append(title.group(1).strip())
+        descriptions.append(description.group(1).strip())
+
+    assert len(titles) == len(set(titles))
+    assert len(descriptions) == len(set(descriptions))
 
 
-def test_public_pages_have_metadata():
-    for page in PAGES[:2]:
-        text = page.read_text(encoding="utf-8")
-        assert "<title>" in text
-        assert 'name="description"' in text
-        assert 'rel="canonical"' in text
-        assert 'application/ld+json' in text
+def test_public_pages_have_complete_metadata():
+    canonicals = []
+    for page in PUBLIC_PAGES:
+        text = read(page)
+        assert 'rel="canonical"' in text, page
+        assert 'rel="icon"' in text, page
+        assert 'property="og:title"' in text, page
+        assert 'property="og:description"' in text, page
+        assert 'property="og:image"' in text, page
+        assert 'name="twitter:card"' in text, page
+        assert 'application/ld+json' in text, page
+        canonical = re.search(r'<link rel="canonical" href="(.+?)">', text, re.I | re.S)
+        assert canonical
+        canonicals.append(canonical.group(1))
+
+    assert len(canonicals) == len(set(canonicals))
 
 
-def test_discovery_files_exist():
-    for name in ("robots.txt", "sitemap.xml", "llms.txt"):
+def test_structured_data_uses_truthful_types():
+    text = "\n".join(read(page) for page in PUBLIC_PAGES)
+    assert '"@type":"WebSite"' in read(SITE / "index.html")
+    assert '"@type":"Dataset"' in read(SITE / "index.html")
+    assert '"@type":"BreadcrumbList"' in read(SITE / "methodology" / "index.html")
+    assert '"@type":"BreadcrumbList"' in read(SITE / "data-notes" / "index.html")
+    assert '"@type":"AboutPage"' in read(SITE / "about" / "index.html")
+    assert "LocalBusiness" not in text
+
+
+def test_discovery_and_social_assets_exist():
+    for name in ("robots.txt", "sitemap.xml", "llms.txt", "site.webmanifest"):
         assert (SITE / name).exists()
+    for name in ("favicon.svg", "social-card.svg", "road-safety-hero.svg"):
+        assert (SITE / "assets" / name).exists()
+
+
+def test_sitemap_lists_all_public_clean_urls():
+    sitemap = read(SITE / "sitemap.xml")
+    expected = [
+        "https://utsav7123.github.io/bc-road-safety-explorer/",
+        "https://utsav7123.github.io/bc-road-safety-explorer/methodology/",
+        "https://utsav7123.github.io/bc-road-safety-explorer/data-notes/",
+        "https://utsav7123.github.io/bc-road-safety-explorer/about/",
+    ]
+    for url in expected:
+        assert f"<loc>{url}</loc>" in sitemap
 
 
 def test_internal_relative_links_resolve():
     pattern = re.compile(r'href="([^"]+)"')
     for page in PAGES:
-        text = page.read_text(encoding="utf-8")
+        text = read(page)
         for href in pattern.findall(text):
             parsed = urlparse(href)
             if parsed.scheme or href.startswith("#"):
@@ -45,13 +100,28 @@ def test_internal_relative_links_resolve():
             assert target.exists(), f"Broken link {href} in {page}"
 
 
-def test_javascript_has_motion_and_no_source_map():
-    js = (SITE / "assets" / "app.js").read_text(encoding="utf-8")
-    css = (SITE / "assets" / "styles.css").read_text(encoding="utf-8")
+def test_images_have_alt_text():
+    for page in PUBLIC_PAGES:
+        text = read(page)
+        images = re.findall(r"<img\b[^>]*>", text, re.I)
+        for image in images:
+            assert re.search(r'\balt="[^"]*"', image, re.I), f"Missing alt in {page}: {image}"
+
+
+def test_production_javascript_is_small_and_clean():
+    js_path = SITE / "assets" / "app.js"
+    js = read(js_path)
+    assert js_path.stat().st_size < 16_000
+    assert "sourceMappingURL" not in js
+    assert "console.error" not in js
+    assert "console.log" not in js
+    assert "TODO" not in js
     assert "requestAnimationFrame" in js
     assert "setInterval" in js
     assert "IntersectionObserver" in js
+
+
+def test_motion_respects_reduced_motion():
+    css = read(SITE / "assets" / "styles.css")
     assert "@keyframes" in css
     assert "prefers-reduced-motion" in css
-    assert "sourceMappingURL" not in js
-    assert "console.error" not in js
