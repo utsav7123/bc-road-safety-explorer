@@ -1,13 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="t d">
 <title id="t">BC Road Safety Explorer</title>
-<desc id="d">Social share card for an interactive British Columbia road safety analytics project.</desc>
-<rect width="1200" height="630" fill="#f4f6f7"/>
-<rect x="62" y="58" width="1076" height="514" rx="30" fill="#ffffff" stroke="#dfe5e9" stroke-width="2"/>
-<circle cx="1020" cy="90" r="180" fill="#e5f0f1"/>
-<circle cx="1060" cy="105" r="108" fill="#d7e8eb"/>
-<text x="105" y="145" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700" fill="#155d6b">BRITISH COLUMBIA · PUBLIC ROAD SAFETY DATA</text>
-<text x="105" y="260" font-family="Arial,Helvetica,sans-serif" font-size="70" font-weight="800" fill="#18232d">BC Road Safety Explorer</text>
-<text x="105" y="326" font-family="Arial,Helvetica,sans-serif" font-size="29" fill="#62707d">KPIs · trends · vulnerable road users · regions · forecasting</text>
-<path d="M110 500 C250 390 310 515 445 410 S680 420 800 345 S955 355 1090 245" fill="none" stroke="#155d6b" stroke-width="10" stroke-linecap="round"/>
-<g fill="#a66b17"><circle cx="445" cy="410" r="14"/><circle cx="800" cy="345" r="14"/><circle cx="1090" cy="245" r="14"/></g>
+<desc id="d">Social share card for a British Columbia road safety analytics project.</desc>
+<rect width="1200" height="630" fill="#ffffff"/>
+<rect x="0" y="0" width="1200" height="22" fill="#f36c21"/>
+<circle cx="1035" cy="135" r="88" fill="#f36c21"/>
+<text x="90" y="140" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" fill="#c94f0d">BRITISH COLUMBIA · PUBLIC ROAD SAFETY DATA</text>
+<text x="90" y="260" font-family="Arial,Helvetica,sans-serif" font-size="74" font-weight="800" fill="#171717">BC Road Safety Explorer</text>
+<text x="90" y="330" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#5f6368">Fatalities · serious injuries · regions · road users · forecasting</text>
+<line x1="90" y1="410" x2="1110" y2="410" stroke="#dedede" stroke-width="2"/>
+<path d="M100 505 L250 455 L390 472 L535 390 L680 430 L825 350 L980 380 L1100 305" fill="none" stroke="#f36c21" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
