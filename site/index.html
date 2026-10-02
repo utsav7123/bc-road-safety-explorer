@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BC Road Safety Explorer | Public Data Analytics</title>
+  <meta name="description" content="Interactive British Columbia road safety analytics with KPI reporting, regional trends, vulnerable road users, forecasting, and geospatial visualization.">
+  <link rel="canonical" href="https://utsav7123.github.io/bc-road-safety-explorer/">
+  <link rel="stylesheet" href="./assets/styles.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="./assets/app.js" defer></script>
+  <meta property="og:title" content="BC Road Safety Explorer">
+  <meta property="og:description" content="Road safety KPIs, trends, regional comparisons, forecasting, and an interactive map built from public BC data.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://utsav7123.github.io/bc-road-safety-explorer/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"BC Road Safety Explorer derived dashboard","creator":{"@type":"Person","name":"Utsav Patel"},"isBasedOn":"Government of British Columbia / RoadSafetyBC public aggregate datasets","url":"https://utsav7123.github.io/bc-road-safety-explorer/"}</script>
+</head>
+<body>
+<header class="site-header"><div class="header"><a class="brand" href="./">BC Road Safety Explorer</a><nav aria-label="Primary"><a href="#trends">Trends</a><a href="#map-section">Regions</a><a href="#forecast">Forecast</a><a href="./methodology/">Methodology</a><a href="https://github.com/utsav7123/bc-road-safety-explorer">Source</a></nav></div></header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">Road safety data · British Columbia</p>
+    <h1>See the trend. Question the metric. Find the context.</h1>
+    <p class="lede">An interactive decision-support project built from public BC road safety data. It connects KPI definitions, vulnerable road users, regional outcomes, trend analysis, and transparent forecasting in one place.</p>
+    <div class="hero-actions"><a class="button primary" href="#trends">Explore the data ↓</a><a class="button" href="./methodology/">Read the methodology</a></div>
+    <p id="status" class="notice" role="status">Loading road safety data...</p>
+  </section>
+
+  <section class="section" aria-labelledby="kpi-title">
+    <div class="section-head"><div><p class="eyebrow">KPI snapshot</p><h2 id="kpi-title">A fast read before the deeper analysis.</h2></div><p class="section-copy">Each KPI keeps its year, source, and five-year direction visible so a single number is not mistaken for the full story.</p></div>
+    <div class="kpi-grid">
+      <article class="card" data-kpi="0"><div class="kpi-label">Loading</div><div class="kpi-value">0</div><div class="kpi-meta">...</div></article>
+      <article class="card" data-kpi="1"><div class="kpi-label">Loading</div><div class="kpi-value">0</div><div class="kpi-meta">...</div></article>
+      <article class="card" data-kpi="2"><div class="kpi-label">Loading</div><div class="kpi-value">0</div><div class="kpi-meta">...</div></article>
+    </div>
+  </section>
+
+  <section class="section" id="trends">
+    <div class="section-head"><div><p class="eyebrow">Time series</p><h2>Move through the history instead of staring at a static line.</h2></div></div>
+    <div class="chart-card"><div class="chart-wrap"><canvas id="trend-chart" aria-label="Annual road safety trend chart"></canvas></div>
+      <div class="timeline-shell"><button id="play-years" aria-label="Play annual timeline">▶</button><input id="year-slider" type="range" aria-label="Select year"><div><div class="year-readout" id="year-readout">...</div><div class="kpi-meta"><span id="timeline-value">...</span> fatalities</div></div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="grid-2">
+      <div class="chart-card"><p class="eyebrow">Road users</p><h2>Who is represented in the latest fatality data?</h2><div class="chart-wrap"><canvas id="road-user-chart"></canvas></div></div>
+      <div><p class="eyebrow">Vulnerable road users</p><h2>Keep the people behind the categories visible.</h2><p class="section-copy">Pedestrians, cyclists, and motorcyclists receive a separate view because aggregate totals can hide differences between road-user groups.</p><div class="story" id="vulnerable-list"></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="map-section">
+    <div class="section-head"><div><p class="eyebrow">Geospatial view</p><h2>Regional outcomes on a living map.</h2></div><p class="section-copy">Marker positions are approximate regional anchors, not crash coordinates. Marker size reflects the latest aggregate fatality count.</p></div>
+    <div class="map-card"><div id="map" aria-label="Map of aggregate BC road safety regions"></div></div>
+  </section>
+
+  <section class="section" id="forecast">
+    <div class="section-head"><div><p class="eyebrow">Transparent forecasting</p><h2>A baseline projection, with the caveat attached.</h2></div></div>
+    <div class="grid-2">
+      <div class="chart-card" style="position:relative"><div class="chart-wrap"><canvas id="forecast-chart"></canvas><canvas id="forecast-overlay" style="position:absolute;inset:20px;width:calc(100% - 40px);height:calc(100% - 40px)"></canvas></div></div>
+      <div class="story">
+        <div class="story-step"><h3>1. Use the most recent 10 annual observations</h3><p class="section-copy">Recent history is used instead of fitting one line through the entire available series.</p></div>
+        <div class="story-step"><h3>2. Fit a simple linear baseline</h3><p class="section-copy">The goal is explainability, not a black-box prediction.</p></div>
+        <div class="story-step"><h3>3. Keep the limitation visible</h3><p class="section-copy">This projection does not model policy changes, exposure, population, weather, enforcement, infrastructure, or other causal drivers.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="eyebrow">Metric design</p><h2>Every useful KPI needs a definition and a warning label.</h2>
+    <div class="dictionary">
+      <article class="card"><span class="badge">Definition</span><h3>Fatality</h3><p class="section-copy">A road user who dies within 30 days after injuries from a motor vehicle collision on a public highway, subject to the source exclusions.</p></article>
+      <article class="card"><span class="badge">Definition</span><h3>Serious injury</h3><p class="section-copy">A police-attended collision where the officer assesses that a victim will require more than 24 hours of hospitalization.</p></article>
+      <article class="card"><span class="badge">Caveat</span><h3>Reporting coverage</h3><p class="section-copy">Police-attended data does not represent every collision, and reporting practices have changed over time.</p></article>
+      <article class="card"><span class="badge">Use</span><h3>Regional monitoring</h3><p class="section-copy">Aggregate regions support comparison and monitoring, but they should not be treated as precise crash locations.</p></article>
+    </div>
+  </section>
+</main>
+<footer><div class="footer-inner"><span>Built from public aggregate road safety data for portfolio and learning purposes.</span><span><a href="./methodology/">Methodology</a> · <a href="https://github.com/utsav7123/bc-road-safety-explorer">GitHub</a></span></div></footer>
+</body>
+</html>
