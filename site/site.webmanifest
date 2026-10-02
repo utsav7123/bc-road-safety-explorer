@@ -1,0 +1,15 @@
+{
+  "name": "BC Road Safety Explorer",
+  "short_name": "Road Safety",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08131d",
+  "theme_color": "#08131d",
+  "icons": [
+    {
+      "src": "./assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
