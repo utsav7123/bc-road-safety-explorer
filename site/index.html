@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://utsav7123.github.io/bc-road-safety-explorer/">
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="./site.webmanifest">
-  <meta name="theme-color" content="#f4f6f7">
+  <meta name="theme-color" content="#f36c21">
   <link rel="stylesheet" href="./assets/styles.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://unpkg.com">
@@ -37,15 +37,14 @@
 <main id="main">
   <section class="hero">
     <p class="eyebrow">Road safety data · British Columbia</p>
-    <h1>See the trend. Question the metric. Find the context.</h1>
-    <p class="lede">An interactive decision-support project built from public BC road safety data. It connects KPI definitions, vulnerable road users, regional outcomes, trend analysis, and transparent forecasting in one place.</p>
-    <div class="hero-actions"><a class="button primary" href="#trends">Explore the data ↓</a><a class="button" href="./methodology/">Read the methodology</a></div>
-    <img class="hero-visual" src="./assets/road-safety-hero.svg" alt="Abstract road safety data illustration with a curved road and animated regional data points." width="760" height="480">
+    <h1>BC road safety trends and regional outcomes.</h1>
+    <p class="lede">A public-data dashboard for fatalities, serious injuries, road-user groups, regional comparisons, and a simple forecast baseline.</p>
+    <div class="hero-actions"><a class="button primary" href="#trends">View the data</a><a class="button" href="./methodology/">Methodology</a></div>
     <p id="status" class="notice" role="status">Loading road safety data...</p>
   </section>
 
   <section class="section" aria-labelledby="kpi-title">
-    <div class="section-head"><div><p class="eyebrow">KPI snapshot</p><h2 id="kpi-title">A fast read before the deeper analysis.</h2></div><p class="section-copy">Each KPI keeps its year, source, and five-year direction visible so a single number is not mistaken for the full story.</p></div>
+    <div class="section-head"><div><p class="eyebrow">KPI snapshot</p><h2 id="kpi-title">Latest published measures.</h2></div><p class="section-copy">Each measure shows its reporting year and five-year change where enough history is available.</p></div>
     <div class="kpi-grid">
       <article class="card" data-kpi="0"><div class="kpi-label">Loading</div><div class="kpi-value">0</div><div class="kpi-meta">...</div></article>
       <article class="card" data-kpi="1"><div class="kpi-label">Loading</div><div class="kpi-value">0</div><div class="kpi-meta">...</div></article>
@@ -54,32 +53,32 @@
   </section>
 
   <section class="section" id="trends">
-    <div class="section-head"><div><p class="eyebrow">Time series</p><h2>Move through the history instead of staring at a static line.</h2></div></div>
+    <div class="section-head"><div><p class="eyebrow">Time series</p><h2>Fatalities by year.</h2></div><p class="section-copy">Use the year selector to inspect individual annual values.</p></div>
     <div class="chart-card"><div class="chart-wrap"><canvas id="trend-chart" aria-label="Annual road safety trend chart"></canvas></div>
-      <div class="timeline-shell"><button id="play-years" aria-label="Play annual timeline">▶</button><input id="year-slider" type="range" aria-label="Select year"><div><div class="year-readout" id="year-readout">...</div><div class="kpi-meta"><span id="timeline-value">...</span> fatalities</div></div></div>
+      <div class="timeline-shell"><input id="year-slider" type="range" aria-label="Select year"><div><div class="year-readout" id="year-readout">...</div><div class="kpi-meta"><span id="timeline-value">...</span> fatalities</div></div></div>
     </div>
   </section>
 
   <section class="section">
     <div class="grid-2">
       <div class="chart-card"><p class="eyebrow">Road users</p><h2>Who is represented in the latest fatality data?</h2><div class="chart-wrap"><canvas id="road-user-chart"></canvas></div></div>
-      <div><p class="eyebrow">Vulnerable road users</p><h2>Keep the people behind the categories visible.</h2><p class="section-copy">Pedestrians, cyclists, and motorcyclists receive a separate view because aggregate totals can hide differences between road-user groups.</p><div class="story" id="vulnerable-list"></div></div>
+      <div><p class="eyebrow">Vulnerable road users</p><h2>Latest published counts.</h2><p class="section-copy">Pedestrians, cyclists, and motorcyclists are shown separately when those categories are available in the source table.</p><div class="story" id="vulnerable-list"></div></div>
     </div>
   </section>
 
   <section class="section" id="map-section">
-    <div class="section-head"><div><p class="eyebrow">Geospatial view</p><h2>Regional outcomes on a living map.</h2></div><p class="section-copy">Marker positions are approximate regional anchors, not crash coordinates. Marker size reflects the latest aggregate fatality count.</p></div>
+    <div class="section-head"><div><p class="eyebrow">Regional view</p><h2>Fatalities and serious injuries by region.</h2></div><p class="section-copy">Marker positions are approximate regional anchors, not crash coordinates. Marker size reflects the latest aggregate fatality count.</p></div>
     <div class="map-card"><div id="map" aria-label="Map of aggregate BC road safety regions"></div></div>
   </section>
 
   <section class="section" id="forecast">
-    <div class="section-head"><div><p class="eyebrow">Transparent forecasting</p><h2>A baseline projection, with the caveat attached.</h2></div></div>
+    <div class="section-head"><div><p class="eyebrow">Forecast baseline</p><h2>Three-year linear trend projection.</h2></div><p class="section-copy">A simple reference model based on the most recent ten annual observations. It is not an official forecast.</p></div>
     <div class="grid-2">
-      <div class="chart-card" style="position:relative"><div class="chart-wrap"><canvas id="forecast-chart"></canvas><canvas id="forecast-overlay" style="position:absolute;inset:20px;width:calc(100% - 40px);height:calc(100% - 40px)"></canvas></div></div>
-      <div class="story">
-        <div class="story-step"><h3>1. Use the most recent 10 annual observations</h3><p class="section-copy">Recent history is used instead of fitting one line through the entire available series.</p></div>
-        <div class="story-step"><h3>2. Fit a simple linear baseline</h3><p class="section-copy">The goal is explainability, not a black-box prediction.</p></div>
-        <div class="story-step"><h3>3. Keep the limitation visible</h3><p class="section-copy">This projection does not model policy changes, exposure, population, weather, enforcement, infrastructure, or other causal drivers.</p></div>
+      <div class="chart-card"><div class="chart-wrap"><canvas id="forecast-chart" aria-label="Observed fatalities and baseline projection"></canvas></div></div>
+      <div class="chart-card">
+        <h3>How to read this</h3>
+        <p class="section-copy">The observed series is shown alongside a three-year linear projection. The model does not account for exposure, population, policy changes, weather, enforcement, infrastructure, or other causal factors.</p>
+        <p class="section-copy"><a href="./methodology/">See the forecast method and limitations</a>.</p>
       </div>
     </div>
   </section>
