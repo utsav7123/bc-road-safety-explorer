@@ -1,16 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 480" role="img" aria-labelledby="title desc">
-<title id="title">Animated road safety data illustration</title>
+<title id="title">Road safety data illustration</title>
 <desc id="desc">An abstract road curves through data points representing regional road safety observations.</desc>
-<rect width="760" height="480" rx="36" fill="#0d1f2d"/>
-<path d="M90 420C190 330 150 225 275 180s180 80 300-70" fill="none" stroke="#243b49" stroke-width="76" stroke-linecap="round"/>
-<path d="M90 420C190 330 150 225 275 180s180 80 300-70" fill="none" stroke="#d9e5ea" stroke-width="4" stroke-dasharray="16 20" stroke-linecap="round"/>
-<g fill="#63d2c6" stroke="#e2fffb" stroke-width="3">
+<rect width="760" height="480" rx="28" fill="#ffffff"/>
+<path d="M90 420C190 330 150 225 275 180s180 80 300-70" fill="none" stroke="#e6ebee" stroke-width="76" stroke-linecap="round"/>
+<path d="M90 420C190 330 150 225 275 180s180 80 300-70" fill="none" stroke="#96a4ae" stroke-width="4" stroke-dasharray="16 20" stroke-linecap="round"/>
+<g fill="#155d6b" stroke="#ffffff" stroke-width="4">
   <circle cx="164" cy="330" r="15"><animate attributeName="r" values="12;18;12" dur="2.6s" repeatCount="indefinite"/></circle>
   <circle cx="290" cy="176" r="13"><animate attributeName="r" values="10;16;10" dur="3.1s" repeatCount="indefinite"/></circle>
   <circle cx="430" cy="205" r="17"><animate attributeName="r" values="14;20;14" dur="2.8s" repeatCount="indefinite"/></circle>
 </g>
-<circle cx="590" cy="93" r="10" fill="#f2bc57"><animate attributeName="opacity" values="1;.35;1" dur="2s" repeatCount="indefinite"/></circle>
-<g font-family="Arial,Helvetica,sans-serif" fill="#9db0bd" font-size="18">
-  <text x="42" y="56">trend</text><text x="620" y="420">region</text><text x="515" y="58">risk</text>
+<circle cx="590" cy="93" r="10" fill="#a66b17"><animate attributeName="opacity" values="1;.4;1" dur="2s" repeatCount="indefinite"/></circle>
+<g font-family="Arial,Helvetica,sans-serif" fill="#62707d" font-size="18">
+  <text x="42" y="56">trend</text>
+  <text x="620" y="420">region</text>
+  <text x="515" y="58">risk</text>
 </g>
 </svg>
