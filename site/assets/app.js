@@ -28,10 +28,10 @@ function makeChart(canvas, labels, values, label, accent, dashed=false) {
     options: {
       responsive: true, maintainAspectRatio: false,
       animation: { duration: 1100, easing: "easeOutQuart" },
-      plugins: { legend: { labels: { color: "#cbd8df" } } },
+      plugins: { legend: { labels: { color: "#44515d" } } },
       scales: {
-        x: { ticks: { color: "#8ea3af" }, grid: { color: "rgba(255,255,255,.06)" } },
-        y: { ticks: { color: "#8ea3af" }, grid: { color: "rgba(255,255,255,.06)" } }
+        x: { ticks: { color: "#6d7b87" }, grid: { color: "rgba(24,35,45,.08)" } },
+        y: { ticks: { color: "#6d7b87" }, grid: { color: "rgba(24,35,45,.08)" } }
       }
     }
   });
@@ -55,7 +55,7 @@ function createMap(points) {
   points.forEach(point => {
     const radius = 9 + Math.sqrt(Math.max(point.fatalities, 1)) * .7;
     L.circleMarker([point.lat, point.lon], {
-      radius, color: "#dffbf7", weight: 1.5, fillColor: "#63d2c6", fillOpacity: .65
+      radius, color: "#ffffff", weight: 1.5, fillColor: "#155d6b", fillOpacity: .65
     }).addTo(map).bindPopup(
       "<strong>" + point.region + "</strong><br>" +
       point.year + "<br>Fatalities: " + nf.format(point.fatalities) +
@@ -116,7 +116,7 @@ async function init() {
     const trendChart = makeChart(
       document.getElementById("trend-chart"),
       trend.map(d => d.year), trend.map(d => d.value),
-      "Fatalities", "#63d2c6"
+      "Fatalities", "#155d6b"
     );
 
     const users = data.road_users.items.slice(0, 8);
@@ -124,15 +124,15 @@ async function init() {
       type: "bar",
       data: {
         labels: users.map(d => d.category),
-        datasets: [{ label: "Fatalities", data: users.map(d => d.value), backgroundColor: "#f2bc57" }]
+        datasets: [{ label: "Fatalities", data: users.map(d => d.value), backgroundColor: "#a66b17" }]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
         animation: { duration: 1000 },
         plugins: { legend: { display: false } },
         scales: {
-          x: { ticks: { color: "#8ea3af" }, grid: { display: false } },
-          y: { ticks: { color: "#8ea3af" }, grid: { color: "rgba(255,255,255,.06)" } }
+          x: { ticks: { color: "#6d7b87" }, grid: { display: false } },
+          y: { ticks: { color: "#6d7b87" }, grid: { color: "rgba(24,35,45,.08)" } }
         }
       }
     });
@@ -142,7 +142,7 @@ async function init() {
       document.getElementById("forecast-chart"),
       [...trend.slice(-10).map(d => d.year), ...f.map(d => d.year)],
       [...trend.slice(-10).map(d => d.value), ...Array(f.length).fill(null)],
-      "Observed", "#63d2c6"
+      "Observed", "#155d6b"
     );
     new Chart(document.getElementById("forecast-overlay"), {
       type: "line",
@@ -151,13 +151,13 @@ async function init() {
         datasets: [{
           label: "Baseline projection",
           data: [...Array(trend.slice(-10).length - 1).fill(null), trend.at(-1).value, ...f.map(d => d.value)],
-          borderColor: "#f2bc57", borderDash: [8,7], borderWidth: 3, pointRadius: 3, tension: .25
+          borderColor: "#a66b17", borderDash: [8,7], borderWidth: 3, pointRadius: 3, tension: .25
         }]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
         animation: { duration: 1200 },
-        plugins: { legend: { labels: { color: "#cbd8df" } } },
+        plugins: { legend: { labels: { color: "#44515d" } } },
         scales: {
           x: { display: false }, y: { display: false }
         }
