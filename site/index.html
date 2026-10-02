@@ -6,6 +6,9 @@
   <title>BC Road Safety Explorer | Public Data Analytics</title>
   <meta name="description" content="Interactive British Columbia road safety analytics with KPI reporting, regional trends, vulnerable road users, forecasting, and geospatial visualization.">
   <link rel="canonical" href="https://utsav7123.github.io/bc-road-safety-explorer/">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./site.webmanifest">
+  <meta name="theme-color" content="#08131d">
   <link rel="stylesheet" href="./assets/styles.css">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://unpkg.com">
@@ -16,17 +19,28 @@
   <meta property="og:title" content="BC Road Safety Explorer">
   <meta property="og:description" content="Road safety KPIs, trends, regional comparisons, forecasting, and an interactive map built from public BC data.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BC Road Safety Explorer">
   <meta property="og:url" content="https://utsav7123.github.io/bc-road-safety-explorer/">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Dataset","name":"BC Road Safety Explorer derived dashboard","creator":{"@type":"Person","name":"Utsav Patel"},"isBasedOn":"Government of British Columbia / RoadSafetyBC public aggregate datasets","url":"https://utsav7123.github.io/bc-road-safety-explorer/"}</script>
+  <meta property="og:image" content="https://utsav7123.github.io/bc-road-safety-explorer/assets/social-card.svg">
+  <meta property="og:image:type" content="image/svg+xml">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BC Road Safety Explorer | Public Data Analytics">
+  <meta name="twitter:description" content="Interactive BC road safety analytics with KPIs, trends, regional comparisons, and transparent forecasting.">
+  <meta name="twitter:image" content="https://utsav7123.github.io/bc-road-safety-explorer/assets/social-card.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"BC Road Safety Explorer","url":"https://utsav7123.github.io/bc-road-safety-explorer/","creator":{"@type":"Person","name":"Utsav Patel","url":"https://github.com/utsav7123"}},{"@type":"Dataset","name":"BC Road Safety Explorer derived dashboard","description":"Derived road safety KPI, trend, regional, vulnerable road-user, and baseline forecast outputs built from public aggregate RoadSafetyBC datasets.","creator":{"@type":"Person","name":"Utsav Patel"},"isBasedOn":"Government of British Columbia / RoadSafetyBC public aggregate datasets","url":"https://utsav7123.github.io/bc-road-safety-explorer/"}]}</script>
 </head>
 <body>
-<header class="site-header"><div class="header"><a class="brand" href="./">BC Road Safety Explorer</a><nav aria-label="Primary"><a href="#trends">Trends</a><a href="#map-section">Regions</a><a href="#forecast">Forecast</a><a href="./methodology/">Methodology</a><a href="https://github.com/utsav7123/bc-road-safety-explorer">Source</a></nav></div></header>
-<main>
+<a class="skip-link" href="#main">Skip to dashboard</a>
+<header class="site-header"><div class="header"><a class="brand" href="./">BC Road Safety Explorer</a><nav aria-label="Primary"><a href="#trends">Trends</a><a href="#map-section">Regions</a><a href="#forecast">Forecast</a><a href="./methodology/">Methodology</a><a href="./data-notes/">Data notes</a><a href="./about/">About</a><a href="https://github.com/utsav7123/bc-road-safety-explorer">Source</a></nav></div></header>
+<main id="main">
   <section class="hero">
     <p class="eyebrow">Road safety data · British Columbia</p>
     <h1>See the trend. Question the metric. Find the context.</h1>
     <p class="lede">An interactive decision-support project built from public BC road safety data. It connects KPI definitions, vulnerable road users, regional outcomes, trend analysis, and transparent forecasting in one place.</p>
     <div class="hero-actions"><a class="button primary" href="#trends">Explore the data ↓</a><a class="button" href="./methodology/">Read the methodology</a></div>
+    <img class="hero-visual" src="./assets/road-safety-hero.svg" alt="Abstract road safety data illustration with a curved road and animated regional data points." width="760" height="480">
     <p id="status" class="notice" role="status">Loading road safety data...</p>
   </section>
 
@@ -80,6 +94,6 @@
     </div>
   </section>
 </main>
-<footer><div class="footer-inner"><span>Built from public aggregate road safety data for portfolio and learning purposes.</span><span><a href="./methodology/">Methodology</a> · <a href="https://github.com/utsav7123/bc-road-safety-explorer">GitHub</a></span></div></footer>
+<footer><div class="footer-inner"><span>Built from public aggregate road safety data for portfolio and learning purposes.</span><span><a href="./methodology/">Methodology</a> · <a href="./data-notes/">Data notes</a> · <a href="./about/">About</a> · <a href="https://github.com/utsav7123/bc-road-safety-explorer">GitHub</a></span></div></footer>
 </body>
 </html>
